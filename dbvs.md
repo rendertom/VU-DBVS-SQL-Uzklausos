@@ -200,3 +200,22 @@ FROM pc
 GROUP BY hd
 HAVING COUNT(hd) >= 2
 ```
+
+16\.
+
+17\.
+
+18\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=18). Score 2. Find the makers of the cheapest color printers.
+Result set: maker, price.
+
+```sql
+SELECT DISTINCT maker, price
+FROM printer
+  INNER JOIN product
+  ON printer.model = product.model
+  WHERE color = 'y'
+  AND price = (
+    SELECT MIN(price) FROM printer
+    WHERE color = 'y'
+  )
+```
