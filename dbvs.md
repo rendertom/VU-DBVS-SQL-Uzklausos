@@ -191,3 +191,12 @@ FROM ships, classes
 WHERE ships.class = classes.class
   AND classes.numGuns >= 10
 ```
+
+15\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=15). Score 1. Get hard drive capacities that are identical for two or more PCs. Result set: hd.
+
+```sql
+SELECT hd
+FROM pc
+GROUP BY hd
+HAVING COUNT(hd) >= 2
+```
