@@ -219,3 +219,14 @@ FROM printer
     WHERE color = 'y'
   )
 ```
+
+19\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=19). Score 1. For each maker having models in the Laptop table, find out the average screen size of the laptops he produces.
+Result set: maker, average screen size.
+
+```sql
+SELECT maker, AVG(screen) AS avg_screen
+FROM product
+  INNER JOIN laptop
+  ON laptop.model = product.model
+GROUP BY maker
+```
