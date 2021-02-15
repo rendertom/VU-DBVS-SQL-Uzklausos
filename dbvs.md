@@ -278,3 +278,25 @@ FROM laptop
   ON product.model = laptop.model
 WHERE speed >= 750
 ```
+
+24\.
+
+25\.
+
+26\.
+
+27\.
+
+28\.
+
+29\.
+
+30\.
+
+31\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=31). Score 1. For ship classes with a gun caliber of 16 in. or more, display the class and the country.
+
+```sql
+SELECT class, country
+FROM classes
+WHERE bore >= 16
+```
