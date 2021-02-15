@@ -260,3 +260,21 @@ FROM pc
   WHERE speed > 600
 GROUP BY speed
 ```
+
+23\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=23). Score 1. Get the makers producing both PCs having a speed of 750 MHz or higher and laptops with a speed of 750 MHz or higher. Result set: maker.
+
+```sql
+SELECT maker
+FROM pc
+  INNER JOIN product
+  ON product.model = pc.model
+WHERE speed >= 750
+
+INTERSECT
+
+SELECT maker
+FROM laptop
+  INNER JOIN product
+  ON product.model = laptop.model
+WHERE speed >= 750
+```
