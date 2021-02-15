@@ -172,3 +172,22 @@ FROM product, pc
 WHERE product.model = pc.model
   AND product.maker = 'A'
 ```
+
+14\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=14). Score: 1. For the ships in the Ships table that have at least 10 guns, get the class, name, and country.
+
+```sql
+SELECT classes.class, ships.name, classes.country
+FROM ships
+  INNER JOIN classes
+  ON ships.class = classes.class
+WHERE classes.numGuns >= 10
+```
+
+arba:
+
+```sql
+SELECT DISTINCT classes.class, ships.name, classes.country
+FROM ships, classes
+WHERE ships.class = classes.class
+  AND classes.numGuns >= 10
+```
