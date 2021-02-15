@@ -241,3 +241,13 @@ FROM product
 GROUP BY maker
 HAVING COUNT(model) >= 3;
 ```
+
+21\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=20). Score 1. Find out the maximum PC price for each maker having models in the PC table. Result set: maker, maximum price.
+
+```sql
+SELECT maker, MAX(price)
+FROM pc
+  INNER JOIN product
+  ON product.model = pc.model
+GROUP BY maker
+```
