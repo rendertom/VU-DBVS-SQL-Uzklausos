@@ -230,3 +230,14 @@ FROM product
   ON laptop.model = product.model
 GROUP BY maker
 ```
+
+20\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=20). Score 1. Find the makers producing at least three distinct models of PCs.
+Result set: maker, number of PC models.
+
+```sql
+SELECT maker, COUNT(model) AS model_count
+FROM product
+  WHERE type = 'PC'
+GROUP BY maker
+HAVING COUNT(model) >= 3;
+```
