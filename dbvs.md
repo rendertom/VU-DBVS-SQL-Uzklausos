@@ -251,3 +251,12 @@ FROM pc
   ON product.model = pc.model
 GROUP BY maker
 ```
+
+22\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=22). Score 1. For each value of PC speed that exceeds 600 MHz, find out the average price of PCs with identical speeds. Result set: speed, average price.
+
+```sql
+SELECT speed, AVG(price) AS avg_price
+FROM pc
+  WHERE speed > 600
+GROUP BY speed
+```
