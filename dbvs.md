@@ -404,3 +404,25 @@ FROM ships
   ON ships.name = outcomes.ship
 WHERE result = 'sunk'
 ```
+
+49\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=49). Find the names of the ships having a gun caliber of 16 inches (including ships in the Outcomes table).
+
+```sql
+SELECT name
+FROM ships
+WHERE class IN (
+  SELECT class
+  FROM classes
+  WHERE bore = 16
+)
+
+UNION
+
+SELECT ship
+FROM outcomes
+WHERE ship IN (
+  SELECT class
+  FROM classes
+  WHERE bore = 16
+)
+```
