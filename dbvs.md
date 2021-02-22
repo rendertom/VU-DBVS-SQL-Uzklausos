@@ -312,7 +312,14 @@ AND battle = 'North Atlantic'
 
 34\.
 
-35\.
+35\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=35). Find models in the Product table consisting either of digits only or Latin letters (A-Z, case insensitive) only. Result set: model, type.
+
+```sql
+SELECT model, type
+FROM product
+  WHERE model NOT LIKE '%[^a-zA-Z]%'
+  OR model NOT LIKE '%[^0-9]%'
+```
 
 36\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=36). List the names of lead ships in the database (including the Outcomes table).
 
