@@ -547,7 +547,28 @@ FROM classes
 WHERE type = 'bb'
 ```
 
-54\.
+46\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=54). With a precision of two decimal places, determine the average number of guns for all battleships (including the ones in the Outcomes table).
+
+```sql
+WITH all_ships AS (
+  SELECT ship, numguns
+  FROM outcomes, classes
+  WHERE outcomes.ship = classes.class
+    AND classes.type = 'bb'
+
+  UNION
+
+  SELECT name, numguns
+  FROM ships, classes
+  WHERE ships.class = classes.class
+    AND classes.type = 'bb'
+)
+
+SELECT CONVERT (
+  NUMERIC(10, 2), AVG(numguns * 1.0)
+) AS average
+FROM all_ships
+```
 
 55\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=55). For each class, determine the year the first ship of this class was launched. If the lead ship’s year of launch is not known, get the minimum year of launch for the ships of this class. Result set: class, year.
 
