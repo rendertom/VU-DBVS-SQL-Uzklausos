@@ -354,7 +354,24 @@ SELECT AVG(price)
 FROM prices
 ```
 
-27\.
+27\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=27). Find out the average hard disk drive capacity of PCs produced by makers who also manufacture printers. Result set: maker, average HDD capacity.
+
+```sql
+WITH stuff AS (
+  SELECT hd, maker
+  FROM PC, product
+  WHERE PC.model = product.model
+  AND maker IN (
+    SELECT maker
+    FROM product
+    WHERE type = 'printer'
+  )
+)
+
+SELECT maker, AVG(hd) AS averageHD
+FROM stuff
+GROUP BY maker
+```
 
 28\.
 
