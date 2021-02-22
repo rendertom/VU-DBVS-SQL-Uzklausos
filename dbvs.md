@@ -300,3 +300,27 @@ SELECT class, country
 FROM classes
 WHERE bore >= 16
 ```
+
+32\.
+
+33\.
+
+34\.
+
+35\.
+
+36\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=36). Score 1. List the names of lead ships in the database (including the Outcomes table).
+
+```sql
+SELECT ships.name
+FROM ships
+  INNER JOIN classes
+  ON ships.name = classes.class
+
+UNION
+
+SELECT outcomes.ship
+FROM outcomes
+  INNER JOIN classes
+  ON outcomes.ship = classes.class
+```
