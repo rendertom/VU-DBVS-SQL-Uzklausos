@@ -431,7 +431,43 @@ FROM outcomes
 WHERE ship LIKE '% % %'
 ```
 
-46\.
+46\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=46). For each ship that participated in the Battle of Guadalcanal, get its name, displacement, and the number of guns.
+
+```sql
+WITH table1 AS (
+  SELECT DISTINCT name, displacement, numGuns
+  FROM classes, ships
+  WHERE classes.class = ships.class
+  AND name IN (
+    SELECT ship
+    FROM outcomes
+    WHERE battle = 'Guadalcanal'
+  )
+
+  UNION
+
+  SELECT DISTINCT ship AS name, displacement, numGuns
+  FROM classes, outcomes
+  WHERE classes.class = outcomes.ship
+    AND battle = 'Guadalcanal'
+)
+
+SELECT *
+FROM table1
+
+UNION
+
+SELECT ship, NULL AS displacement, NULL AS numguns
+FROM outcomes
+WHERE battle = 'Guadalcanal'
+  AND ship NOT IN (
+    SELECT name
+    FROM ships
+  )
+  AND ship NOT IN (
+    SELECT name FROM table1
+  )
+```
 
 47\.
 
