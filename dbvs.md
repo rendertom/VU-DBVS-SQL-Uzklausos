@@ -409,7 +409,16 @@ WHERE result = 'sunk'
 AND battle = 'North Atlantic'
 ```
 
-34\.
+34\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=32). In accordance with the Washington Naval Treaty concluded in the beginning of 1922, it was prohibited to build battle ships with a displacement of more than 35 thousand tons.
+Get the ships violating this treaty (only consider ships for which the year of launch is known). List the names of the ships.
+
+```sql
+FROM ships, classes
+WHERE classes.class = ships.class
+AND type = 'bb'
+AND launched >= 1922
+AND displacement > 35000
+```
 
 35\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=35). Find models in the Product table consisting either of digits only or Latin letters (A-Z, case insensitive) only. Result set: model, type.
 
