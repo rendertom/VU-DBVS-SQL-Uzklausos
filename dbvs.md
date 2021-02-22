@@ -354,3 +354,19 @@ SELECT ship, battle
 FROM outcomes
 WHERE result = 'sunk'
 ```
+
+43\.
+
+44\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=44). Score 1. Find all ship names beginning with the letter R.
+
+```sql
+SELECT name
+FROM ships
+WHERE name LIKE 'R%'
+
+UNION
+
+SELECT ship
+FROM outcomes
+WHERE ship LIKE 'R%'
+```
