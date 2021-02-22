@@ -426,3 +426,25 @@ WHERE ship IN (
   WHERE bore = 16
 )
 ```
+
+50\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=50). Find the battles in which Kongo-class ships from the Ships table were engaged.
+
+```sql
+SELECT DISTINCT battle
+FROM outcomes
+  INNER JOIN ships
+  ON ships.name = outcomes.ship
+WHERE ships.class = 'kongo'
+```
+
+arba
+
+```sql
+SELECT DISTINCT battle
+FROM outcomes
+WHERE ship IN (
+  SELECT name
+  FROM ships
+  WHERE class = 'kongo'
+)
+```
