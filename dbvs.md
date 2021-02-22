@@ -337,7 +337,24 @@ FROM outcomes
   ON outcomes.ship = classes.class
 ```
 
-37\.
+37\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=37). Find classes for which only one ship exists in the database (including the Outcomes table).
+
+```sql
+SELECT class
+FROM (
+  SELECT classes.class, ships.name AS _name_
+  FROM classes, ships
+  WHERE classes.class = ships.class
+
+  UNION
+
+  SELECT classes.class, ship AS _name_
+  FROM classes, outcomes
+  WHERE classes.class = outcomes.ship
+) AS whatever
+GROUP BY class
+HAVING COUNT(_name_) = 1
+```
 
 38\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=38). Find countries that ever had classes of both battleships (‘bb’) and cruisers (‘bc’).
 
