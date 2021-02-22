@@ -373,7 +373,18 @@ FROM stuff
 GROUP BY maker
 ```
 
-28\.
+28\. 🖥️ 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=28). Using Product table, find out the number of makers who produce only one model.
+
+```sql
+WITH all_makers AS (
+  SELECT maker
+  FROM product
+  GROUP BY maker
+  HAVING COUNT(type) = 1
+)
+SELECT COUNT(maker)
+FROM all_makers
+```
 
 29\.
 
