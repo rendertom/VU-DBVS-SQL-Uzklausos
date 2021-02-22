@@ -324,3 +324,19 @@ FROM outcomes
   INNER JOIN classes
   ON outcomes.ship = classes.class
 ```
+
+37\.
+
+38\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=38). Score 1. Find countries that ever had classes of both battleships (‘bb’) and cruisers (‘bc’).
+
+```sql
+SELECT country
+FROM classes
+WHERE type = 'bc'
+
+INTERSECT
+
+SELECT country
+FROM classes
+WHERE type = 'bb'
+```
