@@ -368,3 +368,17 @@ SELECT ship
 FROM outcomes
 WHERE ship LIKE 'R%'
 ```
+
+45\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=45). Find all ship names consisting of three or more words (e.g., King George V). Consider the words in ship names to be separated by single spaces, and the ship names to have no leading or trailing spaces.
+
+```sql
+SELECT name
+FROM ships
+WHERE name LIKE '% % %'
+
+UNION
+
+SELECT ship
+FROM outcomes
+WHERE ship LIKE '% % %'
+```
