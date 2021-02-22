@@ -497,7 +497,15 @@ WHERE table1.ship IN (
 )
 ```
 
-40\.
+40\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=40). Get the makers who produce only one product type and more than one model. Output: maker, type.
+
+```sql
+SELECT maker, MAX(type)
+FROM Product
+GROUP BY maker
+HAVING COUNT(DISTINCT type) = 1
+AND COUNT(model) > 1
+```
 
 41\.
 
