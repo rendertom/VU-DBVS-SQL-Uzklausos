@@ -462,3 +462,24 @@ SELECT CONVERT (
 FROM classes
 WHERE type = 'bb'
 ```
+
+54\.
+
+55\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=55). For each class, determine the year the first ship of this class was launched. If the lead ship’s year of launch is not known, get the minimum year of launch for the ships of this class. Result set: class, year.
+
+```sql
+SELECT classes.class, MIN(ships.launched)
+FROM classes, ships
+WHERE classes.class = ships.class
+GROUP BY classes.class
+
+UNION
+
+SELECT classes.class, NULL
+FROM classes
+WHERE (
+  SELECT COUNT(1)
+  FROM ships
+  WHERE classes.class = ships.class
+) = 0
+```
