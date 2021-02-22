@@ -507,7 +507,56 @@ HAVING COUNT(DISTINCT type) = 1
 AND COUNT(model) > 1
 ```
 
-41\.
+41\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=41). For each maker who has models at least in one of the tables PC, Laptop, or Printer, determine the maximum price for his products. Output: maker; if there are NULL values among the prices for the products of a given maker, display NULL for this maker, otherwise, the maximum price.
+
+```sql
+WITH good_stuff AS(
+  SELECT maker, price
+  FROM PC, product
+  WHERE PC.model = product.model
+
+  UNION ALL
+
+  SELECT maker, price
+  FROM laptop, product
+  WHERE laptop.model = product.model
+
+  UNION ALL
+
+  SELECT maker, price
+  FROM printer, product
+  WHERE printer.model = product.model
+)
+
+SELECT maker,
+(CASE
+  WHEN maker IN (
+    SELECT maker
+    FROM PC, product
+    WHERE PC.model = product.model
+    AND price IS NULL
+
+    UNION
+
+    SELECT maker
+    FROM laptop, product
+    WHERE laptop.model = product.model
+    AND price IS NULL
+
+    UNION
+
+    SELECT maker
+    FROM printer, product
+    WHERE printer.model = product.model
+    AND price IS NULL
+  )
+  THEN NULL
+  ELSE MAX(price)
+END)
+
+FROM good_stuff
+GROUP BY maker
+```
 
 42\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=42). Find the names of ships sunk at battles, along with the names of the corresponding battles.
 
