@@ -382,3 +382,25 @@ SELECT ship
 FROM outcomes
 WHERE ship LIKE '% % %'
 ```
+
+46\.
+
+47\.
+
+48\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=48). Find the ship classes having at least one ship sunk in battles.
+
+```sql
+SELECT class
+FROM classes
+  INNER JOIN outcomes
+  ON outcomes.ship = classes.class
+WHERE result = 'sunk'
+
+UNION
+
+SELECT class
+FROM ships
+  INNER JOIN outcomes
+  ON ships.name = outcomes.ship
+WHERE result = 'sunk'
+```
