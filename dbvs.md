@@ -370,7 +370,24 @@ FROM classes
 WHERE type = 'bb'
 ```
 
-39\.
+39\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=39). Find the ships that `survived for future battles`; that is, after being damaged in a battle, they participated in another one, which occurred later.
+
+```sql
+WITH table1 AS (
+  SELECT ship, result, battle, date
+  FROM outcomes, battles
+  WHERE outcomes.battle = battles.name
+)
+
+SELECT DISTINCT ship
+FROM table1
+WHERE table1.ship IN (
+  SELECT ship
+  FROM table1 AS table2
+  WHERE table2.date < table1.date
+    AND table2.result = 'damaged'
+)
+```
 
 40\.
 
