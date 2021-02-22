@@ -340,3 +340,17 @@ SELECT country
 FROM classes
 WHERE type = 'bb'
 ```
+
+39\.
+
+40\.
+
+41\.
+
+42\. [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=42). Score 1. Find the names of ships sunk at battles, along with the names of the corresponding battles.
+
+```sql
+SELECT ship, battle
+FROM outcomes
+WHERE result = 'sunk'
+```
