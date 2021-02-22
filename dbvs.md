@@ -303,7 +303,35 @@ WHERE price IN (
 )
 ```
 
-25\.
+25\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=25). Find the printer makers also producing PCs with the lowest RAM capacity and the highest processor speed of all PCs having the lowest RAM capacity. Result set: maker.
+
+```sql
+SELECT DISTINCT maker
+FROM Product
+WHERE type = 'printer'
+
+INTERSECT
+
+SELECT DISTINCT maker
+FROM product
+WHERE maker IN (
+  SELECT DISTINCT maker
+  FROM product, PC
+  WHERE product.model = PC.model
+  AND speed = (
+    SELECT DISTINCT MAX(speed)
+    FROM PC
+    WHERE ram IN (
+      SELECT DISTINCT MIN(ram)
+      FROM PC
+    )
+  )
+  AND ram = (
+    SELECT DISTINCT MIN(ram)
+    FROM PC
+  )
+)
+```
 
 26\.
 
