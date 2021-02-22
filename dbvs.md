@@ -448,3 +448,17 @@ WHERE ship IN (
   WHERE class = 'kongo'
 )
 ```
+
+51\.
+
+52\.
+
+53\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=53). With a precision of two decimal places, determine the average number of guns for the battleship classes.
+
+```sql
+SELECT CONVERT (
+  NUMERIC (10, 2), AVG(numGuns * 1.0)
+)  AS avg
+FROM classes
+WHERE type = 'bb'
+```
