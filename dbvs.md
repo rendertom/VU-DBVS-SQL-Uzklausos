@@ -333,7 +333,26 @@ WHERE maker IN (
 )
 ```
 
-26\.
+26\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=26). Find out the average price of PCs and laptops produced by maker A. Result set: one overall average price for all items.
+
+```sql
+WITH prices AS(
+  SELECT price
+  FROM PC, product
+  WHERE PC.model = product.model
+  AND maker = 'A'
+
+  UNION ALL
+
+  SELECT price
+  FROM laptop, product
+  WHERE laptop.model = product.model
+  AND maker = 'A'
+)
+
+SELECT AVG(price)
+FROM prices
+```
 
 27\.
 
