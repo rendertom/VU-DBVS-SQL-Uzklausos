@@ -301,7 +301,14 @@ WHERE bore >= 16
 
 32\.
 
-33\.
+33\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=56). Get the ships sunk in the North Atlantic battle.Result set: ship.
+
+```sql
+SELECT ship
+FROM outcomes
+WHERE result = 'sunk'
+AND battle = 'North Atlantic'
+```
 
 34\.
 
