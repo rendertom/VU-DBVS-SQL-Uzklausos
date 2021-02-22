@@ -277,7 +277,31 @@ FROM laptop
 WHERE speed >= 750
 ```
 
-24\.
+24\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=24). List the models of any type having the highest price of all products present in the database.
+
+```sql
+WITH all_shit AS (
+  SELECT model, price
+  FROM laptop
+
+  UNION
+
+  SELECT model, price
+  FROM pc
+
+  UNION
+
+  SELECT model, price
+  FROM printer
+)
+
+SELECT model
+FROM all_shit
+WHERE price IN (
+  SELECT MAX(price)
+  FROM all_shit
+)
+```
 
 25\.
 
