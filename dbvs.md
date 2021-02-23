@@ -821,3 +821,43 @@ LEFT JOIN a
   ON classes.class = a.class
 GROUP BY classes.class
 ```
+
+57\.
+
+58\.
+
+59\.
+
+60\.
+
+61\.
+
+62\.
+
+63\. ✈️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=63). Find the names of different passengers that ever travelled more than once occupying seats with the same number.
+
+```sql
+WITH fuckers AS (
+  SELECT DISTINCT id_psg
+  FROM pass_in_trip
+  GROUP BY id_psg, place
+  HAVING COUNT(*) > 1
+)
+
+SELECT name
+FROM fuckers, passenger
+WHERE fuckers.id_psg = passenger.id_psg
+```
+
+arba
+
+```sql
+SELECT name
+FROM passenger
+WHERE id_psg IN (
+  SELECT id_psg
+  FROM pass_in_trip
+  GROUP BY place, id_psg
+  HAVING COUNT(*) > 1
+)
+```
