@@ -861,3 +861,72 @@ WHERE id_psg IN (
   HAVING COUNT(*) > 1
 )
 ```
+
+64\.
+
+65\.
+
+66\.
+
+67\.
+
+68\.
+
+69\.
+
+70\.
+
+71\.
+
+72\. ✈️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=72). Among the customers using a single airline, find distinct passengers who have flown most frequently. Result set: passenger name, number of trips.
+
+```sql
+WITH devotedP AS (
+  SELECT ID_psg
+  FROM pass_in_trip, trip
+  WHERE pass_in_trip.trip_no = trip.trip_no
+  GROUP BY ID_psg
+  HAVING COUNT(DISTINCT ID_comp) = 1
+), maxFlies AS (
+  SELECT devotedP.ID_psg, COUNT(trip_no) AS count
+  FROM devotedP, pass_in_trip
+  WHERE devotedP.ID_psg = pass_in_trip.ID_psg
+  GROUP BY devotedP.ID_psg
+)
+
+SELECT name, count
+FROM maxFlies, passenger
+WHERE maxFlies.ID_psg = passenger.ID_psg
+AND count IN (
+  select MAX(count)
+  from maxFlies
+)
+```
+
+arba
+
+```sql
+WITH crap AS (
+  SELECT id_psg, COUNT(*) count
+  FROM pass_in_trip AS PIT1
+  WHERE (
+    SELECT COUNT(id_comp)
+    FROM (
+      SELECT id_comp
+      FROM trip, pass_in_trip AS PIT2
+      WHERE PIT1.id_psg = PIT2.id_psg
+      AND trip.trip_no = PIT2.trip_no
+      GROUP BY trip.id_comp
+    ) companies
+  ) = 1
+  GROUP BY id_psg
+)
+
+SELECT name, count
+FROM crap, passenger
+WHERE crap.id_psg = passenger.id_psg
+AND crap.count = (
+  SELECT MAX(count)
+  FROM crap
+)
+```
