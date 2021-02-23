@@ -201,7 +201,18 @@ GROUP BY hd
 HAVING COUNT(hd) >= 2
 ```
 
-16\.
+16\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=16). Get pairs of PC models with identical speeds and the same RAM capacity. Each resulting pair should be displayed only once, i.e. (i, j) but not (j, i).
+Result set: model with the bigger number, model with the smaller number, speed, and RAM.
+
+```sql
+SELECT DISTINCT a.model, b.model, b.speed, b.ram
+FROM PC a, PC b
+WHERE a.speed = b.speed
+  AND a.ram = b.ram
+  AND a.model <> b.model
+  AND a.model > b.model
+
+```
 
 17\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=17). Get the laptop models that have a speed smaller than the speed of any PC.
 Result set: type, model, speed.
