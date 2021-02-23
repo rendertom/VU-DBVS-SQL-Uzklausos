@@ -203,7 +203,18 @@ HAVING COUNT(hd) >= 2
 
 16\.
 
-17\.
+17\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=17). Get the laptop models that have a speed smaller than the speed of any PC.
+Result set: type, model, speed.
+
+```sql
+SELECT DISTINCT type, product.model, speed
+FROM laptop, product
+WHERE laptop.model = product.model
+AND speed < ALL (
+  SELECT MIN(speed)
+  FROM PC
+)
+```
 
 18\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=18). Find the makers of the cheapest color printers.
 Result set: maker, price.
