@@ -720,7 +720,30 @@ WHERE ship IN (
 )
 ```
 
-51\.
+51\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=51). Find the names of the ships with the largest number of guns among all ships having the same displacement (including ships in the Outcomes table).
+
+```sql
+WITH all_data AS (
+  SELECT name, displacement, numGuns
+  FROM ships, classes
+  WHERE ships.class = classes.class
+
+  UNION
+
+  SELECT ship, displacement, numGuns
+  FROM outcomes, classes
+  WHERE outcomes.ship = classes.class
+), filtered_data AS (
+  SELECT displacement, MAX(numGuns) AS maxGuns
+  FROM all_data
+  GROUP BY displacement
+)
+
+SELECT name
+FROM all_data, filtered_data
+  WHERE all_data.displacement = filtered_data.displacement
+  AND all_data.numGuns = filtered_data.maxGuns
+```
 
 52\.
 
@@ -734,7 +757,7 @@ FROM classes
 WHERE type = 'bb'
 ```
 
-46\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=54). With a precision of two decimal places, determine the average number of guns for all battleships (including the ones in the Outcomes table).
+54\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=54). With a precision of two decimal places, determine the average number of guns for all battleships (including the ones in the Outcomes table).
 
 ```sql
 WITH all_ships AS (
