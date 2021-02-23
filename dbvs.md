@@ -798,3 +798,26 @@ WHERE (
   WHERE classes.class = ships.class
 ) = 0
 ```
+
+56\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=56). For each class, find out the number of ships of this class that were sunk in battles. Result set: class, number of ships sunk.
+
+```sql
+WITH a AS (
+  SELECT class, ship
+  FROM ships, outcomes
+  WHERE ships.name = outcomes.ship
+  AND result = 'sunk'
+
+  UNION
+
+  SELECT ship AS class, ship
+  FROM outcomes
+  WHERE result = 'sunk'
+)
+
+SELECT classes.class, COUNT(ship)
+FROM classes
+LEFT JOIN a
+  ON classes.class = a.class
+GROUP BY classes.class
+```
