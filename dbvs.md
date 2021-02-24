@@ -588,7 +588,17 @@ FROM outcomes
 WHERE result = 'sunk'
 ```
 
-43\.
+43\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=43). Get the battles that occurred in years when no ships were launched into water.
+
+```sql
+SELECT name
+FROM battles
+WHERE DATEPART(yy, date) NOT IN (
+  SELECT launched
+  FROM ships
+  WHERE launched IS NOT NULL
+)
+```
 
 44\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=44). Find all ship names beginning with the letter R.
 
