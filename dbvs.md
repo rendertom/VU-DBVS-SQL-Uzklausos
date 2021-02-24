@@ -977,3 +977,25 @@ AND (
   (type = 'PC' AND numUniqueProducts >=3)
 )
 ```
+
+83\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=83). Find out the names of the ships in the Ships table that meet at least four criteria from the following list: numGuns = 8, bore = 15, displacement = 32000, type = bb, launched = 1915, class = Kongo, country = USA.
+
+```sql
+WITH asd AS (
+  SELECT name, (
+    CASE numGuns WHEN 8 THEN 1 ELSE 0 END+
+    CASE bore WHEN 15 THEN 1 ELSE 0 END +
+    CASE displacement WHEN 32000 THEN 1 ELSE 0 END+
+    CASE type WHEN 'bb' THEN 1 ELSE 0 END+
+    CASE launched WHEN 1915 THEN 1 ELSE 0 END+
+    CASE ships.class WHEN 'Kongo' THEN 1 ELSE 0 END+
+    CASE country WHEN 'USA' THEN 1 ELSE 0 END
+  ) AS criteriaCount
+  FROM ships, classes
+  WHERE ships.class = classes.class
+)
+
+SELECT name
+FROM asd
+WHERE criteriaCount >= 4
+```
