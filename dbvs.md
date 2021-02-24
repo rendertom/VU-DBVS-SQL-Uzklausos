@@ -955,7 +955,21 @@ AND crap.count = (
 
 79\.
 
-80\.
+80\. 🖥️ 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=80). Find the computer equipment makers not producing any PC models absent in the PC table.
+
+```sql
+SELECT maker
+FROM product
+
+EXCEPT
+
+SELECT maker
+FROM product
+WHERE type = 'PC' AND model NOT IN (
+  SELECT model
+  FROM pc
+)
+```
 
 81\.
 
