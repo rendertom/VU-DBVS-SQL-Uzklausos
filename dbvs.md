@@ -940,3 +940,40 @@ AND crap.count = (
   FROM crap
 )
 ```
+
+73\.
+
+74\.
+
+75\.
+
+76\.
+
+77\.
+
+78\.
+
+79\.
+
+80\.
+
+81\.
+
+82\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=82). Get makers producing either printers only or personal computers only; in case of PC manufacturers they should produce at least 3 models.
+
+```sql
+WITH devotedDeveloper AS (
+  SELECT maker, count(type) as numUniqueProducts
+  FROM product
+  GROUP BY maker
+  HAVING COUNT(DISTINCT type) = 1
+)
+
+SELECT DISTINCT product.maker
+FROM devotedDeveloper, product
+WHERE devotedDeveloper.maker = product.maker
+AND (
+  type = 'printer' OR
+  (type = 'PC' AND numUniqueProducts >=3)
+)
+```
