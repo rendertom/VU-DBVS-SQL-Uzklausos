@@ -959,24 +959,7 @@ AND crap.count = (
 
 81\.
 
-82\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=82). Get makers producing either printers only or personal computers only; in case of PC manufacturers they should produce at least 3 models.
-
-```sql
-WITH devotedDeveloper AS (
-  SELECT maker, count(type) as numUniqueProducts
-  FROM product
-  GROUP BY maker
-  HAVING COUNT(DISTINCT type) = 1
-)
-
-SELECT DISTINCT product.maker
-FROM devotedDeveloper, product
-WHERE devotedDeveloper.maker = product.maker
-AND (
-  type = 'printer' OR
-  (type = 'PC' AND numUniqueProducts >=3)
-)
-```
+82\.
 
 83\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=83). Find out the names of the ships in the Ships table that meet at least four criteria from the following list: numGuns = 8, bore = 15, displacement = 32000, type = bb, launched = 1915, class = Kongo, country = USA.
 
@@ -998,4 +981,25 @@ WITH asd AS (
 SELECT name
 FROM asd
 WHERE criteriaCount >= 4
+```
+
+84\.
+
+85\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=85). Get makers producing either printers only or personal computers only; in case of PC manufacturers they should produce at least 3 models.
+
+```sql
+WITH devotedDeveloper AS (
+  SELECT maker, count(type) as numUniqueProducts
+  FROM product
+  GROUP BY maker
+  HAVING COUNT(DISTINCT type) = 1
+)
+
+SELECT DISTINCT product.maker
+FROM devotedDeveloper, product
+WHERE devotedDeveloper.maker = product.maker
+AND (
+  type = 'printer' OR
+  (type = 'PC' AND numUniqueProducts >=3)
+)
 ```
