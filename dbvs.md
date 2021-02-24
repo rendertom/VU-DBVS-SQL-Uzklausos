@@ -951,7 +951,24 @@ AND crap.count = (
 
 77\.
 
-78\.
+78\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=78). For each battle, get the first and the last day of the month when the battle occurred.
+Result set: battle name, first day of the month, last day of the month. Note: output dates in yyyy-mm-dd format.
+
+```sql
+SELECT name, DATEFROMPARTS (
+  DATEPART (year, date),
+  DATEPART (month, date), 1
+) AS 'first day', DATEADD (
+  day, -1, DATEADD (
+    month, 1, DATEFROMPARTS (
+      DATEPART (year, date),
+      DATEPART (month, date), 1
+    )
+  )
+) AS 'last day'
+
+FROM Battles
+```
 
 79\.
 
