@@ -1139,3 +1139,158 @@ AND model NOT IN (
   ORDER BY model ASC
 )
 ```
+
+91\.
+
+92\.
+
+93\.
+
+94\.
+
+95\.
+
+96\.
+
+97\.
+
+98\.
+
+99\.
+
+100\.
+
+101\.
+
+102\.
+
+103\.
+
+104\.
+
+105\.
+
+106\.
+
+107\.
+
+108\.
+
+109\.
+
+110\.
+
+111\.
+
+112\.
+
+113\.
+
+114\.
+
+115\.
+
+116\.
+
+117\.
+
+118\.
+
+119\.
+
+120\.
+
+121\.
+
+122\.
+
+123\.
+
+124\.
+
+125\.
+
+126\.
+
+127\.
+
+128\.
+
+129\.
+
+130\.
+
+131\.
+
+132\.
+
+133\.
+
+134\.
+
+135\.
+
+136\.
+
+137\.
+
+138\.
+
+139\.
+
+140\.
+
+141\.
+
+142\.
+
+143\.
+
+144\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=144). Get the manufacturers producing both the cheapest and the most expensive PCs. Output: maker.
+
+```sql
+WITH makers AS (
+  SELECT price, maker
+  FROM PC, product
+  WHERE PC.model = product.model
+)
+
+SELECT maker
+FROM makers
+WHERE price = (
+  SELECT MIN(price)
+  FROM makers
+)
+
+INTERSECT
+
+SELECT maker
+FROM makers
+WHERE price = (
+  SELECT MAX(price)
+  FROM makers
+)
+
+```
+
+145\.
+
+146\.
+
+147\.
+
+148\.
+
+149\.
+
+150\.
+
+151\.
+
+152\.
+
+153\.
+
+154\.
+
+155\.
