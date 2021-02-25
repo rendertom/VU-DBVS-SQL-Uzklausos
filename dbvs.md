@@ -755,7 +755,18 @@ FROM all_data, filtered_data
   AND all_data.numGuns = filtered_data.maxGuns
 ```
 
-52\.
+52\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=52). Determine the names of all ships in the Ships table that can be a Japanese battleship having at least nine main guns with a caliber of less than 19 inches and a displacement of not more than 65000 tons.
+
+```sql
+SELECT name
+FROM ships, classes
+WHERE ships.class = classes.class
+AND (country = 'Japan' OR country IS NULL)
+AND (type = 'bb' OR type IS NULL)
+AND (numguns >= 9 OR numguns IS NULL)
+AND (bore < 19 OR bore IS NULL)
+AND (displacement <= 65000 OR displacement IS NULL)
+```
 
 53\. 🚢 1️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=53). With a precision of two decimal places, determine the average number of guns for the battleship classes.
 
