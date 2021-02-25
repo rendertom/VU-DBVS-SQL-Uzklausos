@@ -887,7 +887,31 @@ WHERE id_psg IN (
 
 65\.
 
-66\.
+66\. ✈️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=66). For all days between 2003-04-01 and 2003-04-07 find the number of trips from Rostov. Result set: date, number of trips.
+
+```sql
+WITH dates AS (
+  SELECT '2003-04-01 00:00:00.000' date UNION
+  SELECT '2003-04-02 00:00:00.000' date UNION
+  SELECT '2003-04-03 00:00:00.000' date UNION
+  SELECT '2003-04-04 00:00:00.000' date UNION
+  SELECT '2003-04-05 00:00:00.000' date UNION
+  SELECT '2003-04-06 00:00:00.000' date UNION
+  SELECT '2003-04-07 00:00:00.000' date
+)
+
+SELECT dates.date, (
+  SELECT COUNT(*)
+  FROM (
+    SELECT DISTINCT trip.trip_no
+    FROM pass_in_trip, trip
+    WHERE pass_in_trip.trip_no = trip.trip_no
+    AND trip.town_from = 'rostov'
+    AND dates.date = pass_in_trip.date
+  ) trips
+) AS count
+FROM dates
+```
 
 67\.
 
