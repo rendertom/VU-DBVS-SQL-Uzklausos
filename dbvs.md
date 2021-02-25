@@ -919,7 +919,28 @@ FROM dates
 
 69\.
 
-70\.
+70\. 🚢 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=70). Get the battles in which at least three ships from the same country took part.
+
+```sql
+WITH grouped_ships AS (
+  SELECT name AS ship, country
+  FROM ships, classes
+  WHERE ships.class = classes.class
+
+  UNION
+
+  SELECT ship, country
+  FROM outcomes, classes
+  WHERE outcomes.ship = classes.class
+)
+
+SELECT DISTINCT battle
+FROM outcomes, grouped_ships
+WHERE outcomes.ship = grouped_ships.ship
+GROUP BY battle, country
+HAVING COUNT(battle) >=3
+
+```
 
 71\.
 
