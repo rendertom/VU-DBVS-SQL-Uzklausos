@@ -1090,3 +1090,35 @@ AND (
   (type = 'PC' AND numUniqueProducts >=3)
 )
 ```
+
+86\.
+
+87\.
+
+88\.
+
+89\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=89). Get makers having most models in the Product table, as well as those having least. Output: maker, number of models.
+
+```sql
+WITH stats AS (
+  SELECT maker, COUNT(type) as count
+  FROM product
+  GROUP BY maker
+)
+
+SELECT maker, count
+FROM stats
+WHERE count = (
+  SELECT MAX(count)
+  FROM stats
+)
+
+UNION
+
+SELECT maker, count
+FROM stats
+WHERE count = (
+  SELECT MIN(count)
+  FROM stats
+)
+```
