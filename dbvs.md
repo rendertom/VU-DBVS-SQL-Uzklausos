@@ -1122,3 +1122,20 @@ WHERE count = (
   FROM stats
 )
 ```
+
+90\. 🖥️ 2️⃣ [Link](https://sql-ex.ru/exercises/index.php?act=learn&LN=90). Display all records from the Product table except for three rows with the smallest model numbers and three ones with the greatest model numbers.
+
+```sql
+SELECT *
+FROM product
+WHERE model NOT IN (
+  SELECT TOP 3 model
+  FROM product
+  ORDER BY model DESC
+)
+AND model NOT IN (
+  SELECT TOP 3 model
+  FROM product
+  ORDER BY model ASC
+)
+```
